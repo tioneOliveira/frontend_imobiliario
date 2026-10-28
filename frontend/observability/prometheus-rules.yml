@@ -1,0 +1,23 @@
+groups:
+  - name: house-price-frontend
+    rules:
+      - alert: FrontendUnavailable
+        expr: up{job="house-price-frontend"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: Frontend indisponível
+      - alert: FrontendUpstreamFailureRate
+        expr: |
+          (
+            sum(rate(frontend_upstream_requests_total{outcome=~"timeout|upstream_timeout|unreachable|upstream_unreachable|invalid_upstream_response|upstream_error|model_not_ready"}[5m]))
+            / clamp_min(sum(rate(frontend_upstream_requests_total[5m])), 0.000001) > 0.05
+          )
+          and sum(increase(frontend_upstream_requests_total[5m])) >= 20
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: Mais de 5% das consultas ao modelo falharam
+

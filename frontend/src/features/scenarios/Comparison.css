@@ -1,0 +1,87 @@
+.comparison-chart {
+  width: 100%;
+  display: block;
+  height: auto;
+  margin: 30px 0 23px;
+  max-height: 420px;
+}
+.chart-label {
+  font-size: 13px;
+  fill: var(--muted);
+  font-family: inherit;
+}
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  text-align: left;
+  font-variant-numeric: tabular-nums;
+}
+.comparison-table thead th {
+  font-size: 9px;
+  color: var(--muted);
+  font-weight: 500;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  padding: 12px 10px;
+  border-bottom: 1px solid var(--border);
+}
+.comparison-table td,
+.comparison-table tbody th {
+  padding: 16px 10px;
+  border-bottom: 1px solid var(--border);
+  font-weight: 450;
+}
+.comparison-table tbody th {
+  font-weight: 550;
+}
+.comparison-table small {
+  display: block;
+  color: var(--accent);
+  font-size: 9px;
+  margin-top: 5px;
+}
+.comparison-table td:last-child {
+  color: var(--accent);
+}
+@media (max-width: 600px) {
+  .comparison-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+  }
+  .comparison-table,
+  .comparison-table tbody,
+  .comparison-table tr,
+  .comparison-table td,
+  .comparison-table tbody th {
+    display: block;
+  }
+  .comparison-table tr {
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .comparison-table td,
+  .comparison-table tbody th {
+    padding: 7px 0;
+    border: 0;
+  }
+  .comparison-table td {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .comparison-table td::before {
+    content: attr(data-label);
+    color: var(--muted);
+    font-size: 10px;
+  }
+  .comparison-table tbody th {
+    margin-bottom: 7px;
+  }
+  .chart-label {
+    font-size: 16px;
+  }
+}

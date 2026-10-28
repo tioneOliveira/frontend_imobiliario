@@ -1,0 +1,48 @@
+{
+  "name": "houseprice-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "^22.13.0 || ^24.0.0"
+  },
+  "scripts": {
+    "dev": "node --env-file-if-exists=.env --watch server/index.mjs --dev",
+    "start": "node --env-file-if-exists=.env server/index.mjs",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "build": "npm run typecheck && vite build",
+    "test:unit": "vitest run tests/unit tests/component",
+    "test:contract": "node scripts/verify-contract.mjs && vitest run tests/contract",
+    "test:e2e": "playwright test",
+    "test:live": "node scripts/live-smoke.mjs",
+    "check:bundle": "node scripts/check-bundle.mjs",
+    "test:container": "node scripts/verify-container.mjs",
+    "check": "npm run lint && npm run test:unit && npm run test:contract && npm run build && npm run check:bundle"
+  },
+  "dependencies": {
+    "@prometheus-io/client": "0.16.1",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.14.0",
+    "@eslint/js": "10.0.1",
+    "@playwright/test": "1.64.1",
+    "@testing-library/jest-dom": "7.0.1",
+    "@testing-library/react": "16.3.3",
+    "@testing-library/user-event": "14.6.8",
+    "@types/node": "22.13.10",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.1.2",
+    "eslint": "10.13.0",
+    "eslint-plugin-react-hooks": "7.1.1",
+    "jsdom": "26.1.0",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.72.1",
+    "vite": "8.3.5",
+    "vitest": "5.0.5",
+    "yaml": "2.9.1"
+  }
+}
